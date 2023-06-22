@@ -27,6 +27,7 @@ const AddNewNoteModal = ({ open, setOpen, createNewNote }: any) => {
   const onCreateNewNote = () => {
     if (content) {
       createNewNote(content);
+      setContent("")
     }
   };
 
