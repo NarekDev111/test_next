@@ -1,7 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
-import axios from "axios";
+import { post } from "@/service/axios";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -19,7 +19,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         const { username, password } = credentials as any;
-        const res = await axios.post("https://frontend-test-api.aircall.io/auth/login", { username, password });
+        const res = await post("/auth/login", { username, password });
         const user = res.data;
 
         if (user) {
